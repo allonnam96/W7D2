@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MusicProject</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>MusicApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <nav class="navbar">
+    <% if logged_in? %>
+      <form action="<%= session_url %>" method="POST" class="logout-form">
+        <%= auth_token %>
+        <input name="_method" value="DELETE" type="hidden" />
+
+        <input type="submit" value="Logout" class="logout-button" />
+      </form>
+      <h2 class="welcome-message">Welcome, <%= current_user.username %></h2>
+    <% else %>
+      <div class="auth-links">
+        <a href="<%= new_user_url %>" class="signup-link">Sign Up</a>
+        <a href="<%= new_session_url %>" class="login-link">Login</a>
+      </div>
+    <% end %>
+  </nav>
+
+  <% if flash[:errors] %>
+    <div class="flash-errors">
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li>
+            <%= error %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if flash[:messages] %>
+    <div class="flash-messages">
+      <ul>
+        <% flash[:messages].each do |error| %>
+          <li>
+            <%= error %>
+          </li>
+        <% end %>
+      </div>
+      </ul>
+  <% end %>
+
+  <%= yield %>
+</body>
 </html>

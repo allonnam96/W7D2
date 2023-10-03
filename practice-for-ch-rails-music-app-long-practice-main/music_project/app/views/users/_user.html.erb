@@ -1,0 +1,15 @@
+<div class="user-tile">
+  <div class="user-header">
+
+  </div>
+  <div class="user-email">
+    <p>Email: <%= user.email %></p>
+  </div>
+  <div class="user-actions">
+    <% if action == :show %>
+      <a href="<%= users_url %>" class="user-action-link">Users Index</a>
+    <% else %>
+      <a href="<%= user_url(user) %>" class="user-action-link">Users Show</a>
+    <% end %>
+  </div>
+</div>

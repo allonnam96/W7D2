@@ -1,0 +1,13 @@
+<div id="session-form-container">
+    <h2 class="login-heading">Login</h2>
+
+    <form action="<%= session_url %>" method="POST" class="login-form">
+        <label for="email" class="login-label">Email</label>
+        <input type="text" name="user[email]" id="email" class="login-input" value="<%= @user.email %>">
+
+        <label for="password" class="login-label">Password</label>
+        <input type="password" name="user[password]" id="password" class="login-input">
+
+        <input type="submit" value="Login" class="login-button">
+    </form>
+</div>

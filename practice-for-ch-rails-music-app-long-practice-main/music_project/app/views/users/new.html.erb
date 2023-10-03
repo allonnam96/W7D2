@@ -1,0 +1,14 @@
+<div id="session-form-container">
+    <h2 class="signup-heading">Sign Up</h2>
+
+    <form action="<%= users_url %>" method="post" class="signup-form">
+        <label for="signup-email" class="signup-label">email</label>
+        <input type="text" name="user[email]" id="signup-email" class="signup-input">
+
+        <label for="signup-password" class="signup-label">Password</label>
+        <input type="password" name="user[password]" id="signup-password" class="signup-input">
+
+        <input type="submit" value="Create User" class="signup-button">
+    </form>
+</div>
+
